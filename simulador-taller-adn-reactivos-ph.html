@@ -40,6 +40,162 @@ body{font-family:'DM Sans',sans-serif;background:var(--negro);color:var(--blanco
 .p1-note{font-size:13px;color:var(--gris-t);text-align:center;margin-top:14px;}
 .err{color:var(--rojo);font-size:13px;margin-top:10px;display:none;padding:10px 14px;background:rgba(255,68,68,.08);border-radius:7px;border:1px solid rgba(255,68,68,.2);line-height:1.6;}
 
+/* ── VIGENCIA GLOBAL DEL SIMULADOR ── */
+.vigencia-wrap{
+  width:100%;
+  max-width:560px;
+  margin:-12px auto 26px;
+  padding:18px 16px;
+  border:1px solid rgba(189,255,0,.42);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(189,255,0,.12),rgba(189,255,0,.035));
+  box-shadow:0 0 26px rgba(189,255,0,.09);
+  text-align:center;
+}
+.vigencia-eyebrow{
+  color:var(--verde);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.vigencia-reloj{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:nowrap;
+}
+.vigencia-unidad{
+  min-width:65px;
+  padding:9px 8px 8px;
+  border:1px solid rgba(189,255,0,.32);
+  border-radius:10px;
+  background:#0f1723;
+}
+.vigencia-num{
+  display:block;
+  font-family:'Bebas Neue',sans-serif;
+  color:#fff;
+  font-size:31px;
+  line-height:1;
+  letter-spacing:1px;
+  text-shadow:0 0 16px rgba(189,255,0,.55);
+}
+.vigencia-lbl{
+  display:block;
+  color:var(--verde);
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  margin-top:4px;
+}
+.vigencia-sep{
+  color:var(--verde);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;
+  line-height:48px;
+}
+.vigencia-fecha{
+  margin-top:11px;
+  color:var(--gris-t);
+  font-size:11px;
+  line-height:1.5;
+}
+.vigencia-fecha strong{color:#fff;}
+
+/* Pantalla definitiva al finalizar */
+#simulador-finalizado{
+  display:none;
+  min-height:100vh;
+  padding:38px 20px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 15%,rgba(189,255,0,.18),transparent 38%),
+    #0A0A0A;
+}
+#simulador-finalizado.show{display:flex;}
+.finalizado-card{
+  width:100%;
+  max-width:650px;
+  padding:42px 28px;
+  border:1px solid rgba(189,255,0,.4);
+  border-radius:20px;
+  background:#121212;
+  box-shadow:0 20px 70px rgba(0,0,0,.45),0 0 35px rgba(189,255,0,.08);
+}
+.finalizado-icon{
+  width:72px;
+  height:72px;
+  margin:0 auto 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(189,255,0,.45);
+  border-radius:50%;
+  background:rgba(189,255,0,.1);
+  color:var(--verde);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:33px;
+}
+.finalizado-kicker{
+  color:var(--verde);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2.4px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.finalizado-titulo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(42px,8vw,68px);
+  line-height:.98;
+  letter-spacing:1px;
+  margin-bottom:17px;
+}
+.finalizado-titulo span{color:var(--verde);}
+.finalizado-copy{
+  max-width:510px;
+  margin:0 auto 27px;
+  color:var(--gris-t);
+  font-size:15px;
+  line-height:1.7;
+}
+.btn-tematicos{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:14px 24px;
+  border:1px solid var(--verde);
+  border-radius:9px;
+  background:var(--verde);
+  color:#0A0A0A;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.5px;
+  box-shadow:0 0 22px rgba(189,255,0,.28);
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.btn-tematicos:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 32px rgba(189,255,0,.4);
+}
+@media(max-width:520px){
+  .vigencia-wrap{padding:15px 9px;margin-top:-10px;}
+  .vigencia-reloj{gap:4px;}
+  .vigencia-unidad{min-width:55px;padding-left:5px;padding-right:5px;}
+  .vigencia-num{font-size:27px;}
+  .vigencia-sep{font-size:23px;}
+  .finalizado-card{padding:35px 20px;}
+}
+
+
 /* ── P2 ── */
 #p2{min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center;}
 .p2-sup{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,72px);line-height:.95;margin-bottom:28px;max-width:640px;}
@@ -264,6 +420,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--negro);color:var(--blanco
 </head>
 <body>
 
+<div id="simulador-finalizado" aria-live="assertive">
+  <div class="finalizado-card">
+    <div class="finalizado-icon">48H</div>
+    <p class="finalizado-kicker">Vigencia concluida</p>
+    <h1 class="finalizado-titulo">EL SIMULADOR DEL TALLER<br><span>ADN DE LOS REACTIVOS HA FINALIZADO</span></h1>
+    <p class="finalizado-copy">Para continuar practicando, conoce nuestros simuladores temáticos y fortalece los temas que necesitas antes de tu evaluación.</p>
+    <a class="btn-tematicos" href="https://simuladores.profeluisvalencia.com/tematicos">SIMULADORES TEMÁTICOS →</a>
+  </div>
+</div>
+
+
 <!-- ═══════════════ P1 REGISTRO ═══════════════ -->
 <div id="p1" class="panel active">
   <p class="logo-tag">Profe Luis Valencia · PH 2026</p>
@@ -274,6 +441,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--negro);color:var(--blanco
       <span class="badge">30 Reactivos</span>
       <span class="badge">Formato USICAMM</span>
       <span class="badge">Resultado inmediato</span>
+    </div>
+    <div class="vigencia-wrap" id="vigencia-wrap" aria-live="polite">
+      <div class="vigencia-eyebrow" id="vigencia-eyebrow">El simulador finaliza en</div>
+      <div class="vigencia-reloj">
+        <div class="vigencia-unidad"><span class="vigencia-num" id="vig-dias">00</span><span class="vigencia-lbl">Días</span></div>
+        <span class="vigencia-sep">:</span>
+        <div class="vigencia-unidad"><span class="vigencia-num" id="vig-horas">00</span><span class="vigencia-lbl">Horas</span></div>
+        <span class="vigencia-sep">:</span>
+        <div class="vigencia-unidad"><span class="vigencia-num" id="vig-minutos">00</span><span class="vigencia-lbl">Minutos</span></div>
+        <span class="vigencia-sep">:</span>
+        <div class="vigencia-unidad"><span class="vigencia-num" id="vig-segundos">00</span><span class="vigencia-lbl">Segundos</span></div>
+      </div>
+      <p class="vigencia-fecha">Disponible hasta el <strong>sábado 8 de agosto de 2026 · 1:00 p. m.</strong><br>Hora de la Ciudad de México.</p>
     </div>
     <div class="form-card">
       <div class="fg">
@@ -294,7 +474,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--negro);color:var(--blanco
         <input type="hidden" id="inp-funcion">
       </div>
       <div id="p1-error" class="err"></div>
-      <button class="btn-v" onclick="ingresar()">INGRESAR →</button>
+      <button class="btn-v" id="btn-ingresar" onclick="ingresar()">INGRESAR →</button>
       <p class="p1-note">Pon a prueba tus conocimientos.</p>
     </div>
   </div>
@@ -428,6 +608,103 @@ body{font-family:'DM Sans',sans-serif;background:var(--negro);color:var(--blanco
 
 <!-- ═══════════════ SCRIPT ═══════════════ -->
 <script>
+
+// ══════════════════════════════════════
+// VIGENCIA GLOBAL — 48 HORAS PARA TODOS
+// CDMX: 6 agosto 2026, 1:00 p. m. → 8 agosto 2026, 1:00 p. m.
+// ══════════════════════════════════════
+const VIGENCIA_INICIO = new Date('2026-08-06T13:00:00-06:00').getTime();
+const VIGENCIA_FIN    = new Date('2026-08-08T13:00:00-06:00').getTime();
+let vigenciaInterval  = null;
+let simuladorBloqueado = false;
+
+function padVigencia(n){
+  return String(Math.max(0, Math.floor(n))).padStart(2,'0');
+}
+
+function establecerAccesoActivo(activo){
+  ['inp-nombre','inp-wa','inp-clave'].forEach(function(id){
+    const campo = document.getElementById(id);
+    if(campo) campo.disabled = !activo;
+  });
+  const boton = document.getElementById('btn-ingresar');
+  if(boton){
+    boton.disabled = !activo;
+    boton.style.opacity = activo ? '1' : '.45';
+    boton.style.cursor = activo ? 'pointer' : 'not-allowed';
+  }
+}
+
+function bloquearSimulador(){
+  if(simuladorBloqueado) return;
+  simuladorBloqueado = true;
+
+  if(vigenciaInterval) clearInterval(vigenciaInterval);
+  if(typeof timerInterval !== 'undefined' && timerInterval) clearInterval(timerInterval);
+
+  document.querySelectorAll('.panel').forEach(function(panel){
+    panel.classList.remove('active');
+  });
+
+  establecerAccesoActivo(false);
+
+  const pantalla = document.getElementById('simulador-finalizado');
+  if(pantalla) pantalla.classList.add('show');
+
+  document.body.style.overflow = 'auto';
+  window.scrollTo(0,0);
+}
+
+function actualizarVigencia(){
+  const ahora = Date.now();
+
+  if(ahora >= VIGENCIA_FIN){
+    ['vig-dias','vig-horas','vig-minutos','vig-segundos'].forEach(function(id){
+      const el = document.getElementById(id);
+      if(el) el.textContent = '00';
+    });
+    bloquearSimulador();
+    return;
+  }
+
+  let diferencia;
+  const encabezado = document.getElementById('vigencia-eyebrow');
+
+  if(ahora < VIGENCIA_INICIO){
+    diferencia = VIGENCIA_INICIO - ahora;
+    if(encabezado) encabezado.textContent = 'El simulador se activa en';
+    establecerAccesoActivo(false);
+  }else{
+    diferencia = VIGENCIA_FIN - ahora;
+    if(encabezado) encabezado.textContent = 'El simulador finaliza en';
+    establecerAccesoActivo(true);
+  }
+
+  const dias = Math.floor(diferencia / 86400000);
+  const horas = Math.floor((diferencia % 86400000) / 3600000);
+  const minutos = Math.floor((diferencia % 3600000) / 60000);
+  const segundos = Math.floor((diferencia % 60000) / 1000);
+
+  const valores = {
+    'vig-dias': dias,
+    'vig-horas': horas,
+    'vig-minutos': minutos,
+    'vig-segundos': segundos
+  };
+
+  Object.keys(valores).forEach(function(id){
+    const el = document.getElementById(id);
+    if(el) el.textContent = padVigencia(valores[id]);
+  });
+}
+
+function simuladorVigente(){
+  return Date.now() >= VIGENCIA_INICIO && Date.now() < VIGENCIA_FIN;
+}
+
+actualizarVigencia();
+vigenciaInterval = setInterval(actualizarVigencia,1000);
+
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygkHV3uVyEEO86FWSuI9LcODIwoZ5h65pcpHHZKN4iFncdeHWZBYSOhGoJyyYM7BYt/exec';
 
 const CLAVES = {
@@ -477,6 +754,10 @@ document.getElementById('inp-clave').addEventListener('input', function(){
 });
 
 async function ingresar() {
+  if (!simuladorVigente()) {
+    if (Date.now() >= VIGENCIA_FIN) bloquearSimulador();
+    return;
+  }
   const nombre = document.getElementById('inp-nombre').value.trim();
   const wa     = document.getElementById('inp-wa').value.trim();
   const clave  = document.getElementById('inp-clave').value.toUpperCase().trim();
@@ -541,6 +822,10 @@ function construirP2() {
 // P3 — QUIZ
 // ══════════════════════════════════════
 function empezarQuiz() {
+  if (!simuladorVigente()) {
+    if (Date.now() >= VIGENCIA_FIN) bloquearSimulador();
+    return;
+  }
   respuestas = [];
   qIdx = 0;
   t0   = Date.now();
